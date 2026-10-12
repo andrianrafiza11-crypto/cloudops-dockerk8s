@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CloudOps | Infrastructure Portfolio</title>
+<style>
+:root {
+  --bg:#0b1120; --panel:#131d30; --line:#293750;
+  --text:#edf3ff; --muted:#9cacc5; --blue:#60a5fa;
+  --green:#34d399;
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  margin:0; background:var(--bg); color:var(--text);
+  font:15px/1.6 Arial,sans-serif;
+}
+header {
+  position:sticky; top:0; z-index:5;
+  display:flex; justify-content:space-between; align-items:center;
+  gap:16px; padding:16px 6%;
+  background:#0b1120ed; border-bottom:1px solid var(--line);
+}
+.logo { font-size:20px; font-weight:bold; }
+.logo span { color:var(--blue); }
+nav { display:flex; gap:18px; flex-wrap:wrap; }
+a { color:var(--muted); text-decoration:none; }
+a:hover { color:var(--blue); }
+main { max-width:1100px; margin:auto; padding:42px 22px; }
+.hero { padding:45px 0 30px; }
+.eyebrow { color:var(--green); font-weight:bold; }
+h1 { font-size:clamp(32px,5vw,52px); line-height:1.15; margin:12px 0; }
+h2 { margin-top:42px; }
+p { color:var(--muted); }
+button,.button {
+  display:inline-block; border:0; border-radius:9px;
+  padding:11px 16px; margin:8px 8px 8px 0;
+  background:var(--blue); color:#07111f;
+  font-weight:bold; cursor:pointer;
+}
+.secondary { background:var(--panel); color:var(--text); border:1px solid var(--line); }
+.grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.card {
+  background:var(--panel); border:1px solid var(--line);
+  border-radius:14px; padding:20px;
+}
+.metric { font-size:28px; font-weight:bold; margin:8px 0; }
+.green { color:var(--green); }
+.blue { color:var(--blue); }
+section { scroll-margin-top:85px; }
+.tag {
+  display:inline-block; padding:5px 10px; margin:4px;
+  border:1px solid var(--line); border-radius:20px;
+  color:var(--muted); font-size:13px;
+}
+pre {
+  overflow:auto; padding:16px; border-radius:10px;
+  background:#070c16; color:#b9d7ff;
+}
+footer {
+  border-top:1px solid var(--line); padding:25px;
+  text-align:center; color:var(--muted);
+}
+@media(max-width:700px) {
+  header { align-items:flex-start; flex-direction:column; }
+  nav { gap:12px; }
+  .grid { grid-template-columns:1fr; }
+  main { padding:25px 16px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">Cloud<span>Ops</span> Portfolio</div>
+  <nav>
+    <a href="#overview">Overview</a>
+    <a href="#architecture">Architecture</a>
+    <a href="#deployment">Deployment</a>
+    <a href="#about">About</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" id="overview">
+    <div class="eyebrow">● CLOUD INFRASTRUCTURE PROJECT</div>
+    <h1>Deploying a Web App<br>with Docker & Kubernetes</h1>
+    <p>
+      A hands-on cloud-native project demonstrating containerization,
+      Kubernetes deployment, service networking, and application delivery.
+    </p>
+    <a class="button" href="#architecture">Explore Project ↓</a>
+    <button class="secondary" onclick="showDetails()">Project Details</button>
+  </section>
+
+  <section>
+    <div class="grid">
+      <div class="card">
+        <div class="blue">CONTAINER</div>
+        <div class="metric">Docker</div>
+        <p>Package the website into a container image.</p>
+      </div>
+      <div class="card">
+        <div class="blue">ORCHESTRATION</div>
+        <div class="metric">Kubernetes</div>
+        <p>Manage application Pods and deployments.</p>
+      </div>
+      <div class="card">
+        <div class="blue">ACCESS</div>
+        <div class="metric">NodePort</div>
+        <p>Expose the service inside the local cluster.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="architecture">
+    <h2>System Architecture</h2>
+    <p>How a request reaches the application.</p>
+    <div class="card">
+      <div class="grid">
+        <div><span class="tag">01</span><h3>Browser</h3><p>User opens the web app.</p></div>
+        <div><span class="tag">02</span><h3>Kubernetes Service</h3><p>Routes traffic to an available Pod.</p></div>
+        <div><span class="tag">03</span><h3>Application Pods</h3><p>Nginx serves the website.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="deployment">
+    <h2>Deployment Workflow</h2>
+    <div class="card">
+      <p><span class="green">✓</span> 1. Create the HTML application</p>
+      <p><span class="green">✓</span> 2. Build a Docker image</p>
+      <p><span class="green">✓</span> 3. Deploy the application to Kubernetes</p>
+      <p><span class="green">✓</span> 4. Create a Kubernetes Service</p>
+      <p><span class="green">✓</span> 5. Access the application through port forwarding</p>
+      <pre>docker build -t cloud-demo:latest .
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+kubectl get pods
+kubectl get services</pre>
+      <button onclick="copyCommands()">Copy Commands</button>
+      <p id="copyMessage" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2>Project Summary</h2>
+    <div class="card">
+      <h3>Cloud Demo Application</h3>
+      <p>
+        This project demonstrates the basic workflow of packaging,
+        deploying, and accessing a web application using container
+        technology and Kubernetes.
+      </p>
+      <div>
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+        <span class="tag">Docker</span>
+        <span class="tag">Kubernetes</span>
+        <span class="tag">YAML</span>
+      </div>
+      <p><strong>Project status:</strong> <span class="green">Local demo deployed</span></p>
+      <p>Next goals: health checks, monitoring, Git version control, and cloud deployment.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  CloudOps Portfolio · Learning Project · Built with Docker & Kubernetes
+</footer>
+
+<script>
+function showDetails() {
+  document.getElementById("about").scrollIntoView({behavior:"smooth"});
+}
+
+async function copyCommands() {
+  const commands = `docker build -t cloud-demo:latest .
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+kubectl get pods
+kubectl get services`;
+
+  const message = document.getElementById("copyMessage");
+  try {
+    await navigator.clipboard.writeText(commands);
+    message.textContent = "Commands copied!";
+  } catch (error) {
+    message.textContent = "Copy unavailable. Select the commands above manually.";
+  }
+}
+</script>
+</body>
+</html>
